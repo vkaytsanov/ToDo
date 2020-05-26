@@ -1,4 +1,4 @@
-"""Reminders URL Configuration
+"""ToDo URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+from ToDo import views
+
+''' first we create a method with response in views.py what to render, then we say that the following url below
+    as first argument will be the place to render it, second argument is for where the method is '''
 urlpatterns = [
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
 ]

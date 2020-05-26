@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+''' adding the main app to installed apps so we can render the base directory'''
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ToDo',
 ]
 
 MIDDLEWARE = [
