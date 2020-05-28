@@ -5,6 +5,8 @@ from django.shortcuts import render
     the 3rd parameter is for passing variables with values, which can be used, type {} for none
 '''
 
+""" ToDo get count of registered users from the database """
+
 
 def index(request):
     args = {}
