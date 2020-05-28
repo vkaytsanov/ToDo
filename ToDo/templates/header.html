@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="googlebot" content="INDEX,FOLLOW">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="<!-- @TODO -->">
+    <meta name="description" content="<!-- @TODO -->">
+    <meta name="keywords" content="<!-- @TODO -->">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <script src="{% static 'scripts.js' %}"></script>
+    <title>ToDo App</title>
+</head>
+<body>
+<header>
+    <div class="logo-section">
+        <img src="{% static 'media/logo.png' %}" alt="ToDo Logo">
+    </div>
+
+        <div class="burger-menu-mobile"><a href="#"><i class="fas fa-bars"></i></a></div>
+        <div class="burger-menu-mobile-quit"><a href="#"><i class="fas fa-times"></i></a></div>
+        <nav class="nav-menu" id="mymenu">
+            <div class="login-section">
+                <span class="login-section-text"><a href="">Вход</a></span>
+                <span class="login-section-text"><a href="" class="login-section-text-button">Регистрация</a></span>
+            </div>
+
+            <div class="mobile-menu-extra-text">
+                <h5>Address</h5>
+                <p>Lorem Ipsum</p>
+                <h5>Contact us</h5>
+                <ul class="social-buttons">
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+    <div class="clear"></div>
+</header>

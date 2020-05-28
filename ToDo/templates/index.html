@@ -1,8 +1,39 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-        <h1>Hello world</h1>
-    </body>
-</html>
+{% include "header.html" %}
+{% load static %}
+<div class="overlay_image"></div>
+<main>
+  <section class="big-section">
+    <div class="container">
+        <h1 class="text-center">
+            Твоят е-бележник за твоите задължения.
+        </h1>
+    </div>
+  </section>
+ <div class="clear"></div>
+    <section class="card-section">
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    <i class="fas fa-address-book" style="font-size: 100px;"></i>
+                    <h2>Приятели</h2>
+                    <p>Лесна възможност за екипна работа, обедини сили</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-envelope" style="font-size: 100px;"></i>
+                    <h2>Съобщения</h2>
+                    <p>Никога не забравяй какво трябва да направиш с нашите имейл подсещания</p>
+                </div>
+                <div class="card">
+                    <i class="fas fas fa-award" style="font-size: 100px;"></i>
+                    <h2>Постижения</h2>
+                    <p>Мотивирай се като получаваш значки за всяка свършена работа</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clear"></div>
+    <section class="invite-section">
+        <h3>Вече {{ number_of_registered }} го направиха. Присъедини се и ти сега!</h3>
+    </section>
+</main>
+{% include "footer.html" %}
