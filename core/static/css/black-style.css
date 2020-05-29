@@ -1,0 +1,34 @@
+h1,h2,h3,h4,h5,h6{
+    font-weight: 300;
+    color: #2c2c2c;
+}
+
+.login-section-text a{
+    padding-left: 15px;
+    text-decoration: none;
+    /*color: rgb(87, 104, 113);*/
+   color: #2c2c2c;
+}
+
+.login-section-text a:hover{
+    color: #2c2c2c;
+    text-decoration: underline;
+}
+
+.login-section-text-button{
+    /*border: 1px solid rgb(87, 104, 113);*/
+    border: 1px solid #2c2c2c;
+    /*color: rgb(87, 104, 113);*/
+     color: #2c2c2c;
+    background-color:inherit;
+    padding: 6px 20px;
+    float:right;
+    margin-left: 20px;
+    margin-top: -6px;
+    border-radius: 3px;
+}
+
+.login-section-text-button:hover{
+    text-decoration: underline;
+    box-shadow: 0 0 5px #eeeeee;
+}

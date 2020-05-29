@@ -1,5 +1,10 @@
-{% include "header.html" %}
-{% load static %}
+{% extends 'base.html' %}
+{% block title %}Начало{% endblock %}
+{% block description %}Твоят е-бележник за твоите задължения.{% endblock %}
+{% block keywords %}бележник, задължения, онлайн, екип{% endblock %}
+{% block extra_styles %}{% endblock %}
+{% block extra_scripts %}{% endblock %}
+{% block content %}
 <div class="overlay_image"></div>
 <main>
   <section class="big-section">
@@ -36,4 +41,5 @@
         <h3>Вече {{ number_of_registered }} го направиха. Присъедини се и ти сега!</h3>
     </section>
 </main>
-{% include "footer.html" %}
+{% endblock %}
+{% block footer %} {% include 'footer.html' %} {% endblock %}

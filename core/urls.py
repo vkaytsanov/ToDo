@@ -1,4 +1,4 @@
-"""ToDo URL Configuration
+"""core URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -18,11 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from ToDo import views
+from core import views
 
 ''' first we create a method with response in views.py what to render, then we say that the following url below
     as first argument will be the place to render it, second argument is for where the method is '''
 urlpatterns = [
     path('', views.index, name='index'),
+    path('login/', views.login, name='login'),
+    path('about/', views.about, name='about'),
     path('admin/', admin.site.urls, name='admin'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
