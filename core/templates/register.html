@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Вход{% endblock %}
+{% block description %}Твоят е-бележник за твоите задължения.{% endblock %}
+{% block keywords %}бележник, задължения, онлайн, екип{% endblock %}
+{% block extra_styles %}{% endblock %}
+{% block extra_scripts %}{% endblock %}
+{% block content %}
+<main rel="main">
+    <div class="background-overlay4"></div>
+    <section class="form-signup-section">
+        <div class="column">
+            <p>Всички полета са задължителни!</p>
+            <p style="float:left;width: 350px;"></p>
+
+                <form method="post" autocomplete="off">
+                    <div class="row">
+                        <input type="text" name="first_name" id="first_name" placeholder="Име"/>
+                        <input type="text" name="last_name" id="last_name" placeholder="Фамилия"/>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div id="user-icon" class="signup-left-icon">
+                            <i  class="fa fa-user"></i>
+                        </div>
+                        <input class="input-scretch" name="username" id="username" type="text" placeholder="Потребителско име" />
+                    </div>
+                    <div class="row">
+                        <div id="email-icon" class="signup-left-icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <input class="input-scretch" name="email" id="email" type="text" placeholder="Имейл" />
+
+                    </div>
+                    <div class="row">
+                        <div id="password-icon" class="signup-left-icon">
+                            <i  class="fa fa-lock"></i>
+                        </div>
+                        <input class="input-scretch" name="password" type="password" id="password" placeholder="Парола" />
+                        <i class="fas fa-eye" id="show-password"></i>
+                    </div>
+                    <div class="row">
+                        <div id="repeat_password-icon" class="signup-left-icon">
+                            <i class="fa fa-lock-open"></i>
+                        </div>
+                        <input class="input-scretch" name="repeat_password" id="repeat_password" type="password" placeholder="Повтори паролата" />
+                    </div>
+                    <div class="row">
+                        <input type="submit" name="register" class="input-scretch-more input-scretch-more-false" value="Регистрирай се" />
+                    </div>
+                </form>
+        </div>
+    </section>
+</main>
+<script type="text/javascript">
+    $('document').ready(function() {
+        var input = document.getElementById("password");
+        $('#show-password').on('click', function(){
+            if(input.type === "password"){
+                $('#show-password').removeClass('fa-eye');
+                $('#show-password').addClass('fa-eye-slash');
+                input.type = "text";
+
+            }else{
+                $('#show-password').removeClass('fa-eye-slash');
+                $('#show-password').addClass('fa-eye');
+                input.type = "password";
+            }
+        });
+
+    });
+</script>
+{% endblock %}
