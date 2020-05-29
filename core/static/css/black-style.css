@@ -3,6 +3,10 @@ h1,h2,h3,h4,h5,h6{
     color: #2c2c2c;
 }
 
+.additional-info h3{
+    color: #fff;
+}
+
 .login-section-text a{
     padding-left: 15px;
     text-decoration: none;

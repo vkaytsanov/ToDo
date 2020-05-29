@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Контакти{% endblock %}
+{% block description %}Твоят е-бележник за твоите задължения.{% endblock %}
+{% block keywords %}бележник, задължения, онлайн, екип{% endblock %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/black-style.css' %}">
+{% endblock %}
+{% block extra_scripts %}{% endblock %}
+{% block content %}
+<main rel="main" style="display:flex; margin: 0 0; width:100%; overflow: hidden; position:absolute; z-index: -1;">
+    <section class="contact-section">
+            <div class="background-overlay3">
+                <div class="additional-info">
+
+                    <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+                    <p>Нбу, София, България</p>
+                    <h3><i class="fas fa-phone-alt"></i> Телефон</h3>
+                    <p>0883990030</p>
+                    <h3><i class="far fa-envelope"></i> Нашият мейл</h3>
+                    <p>help@reminders.com</p>
+
+                </div>
+            </div>
+             <div class="contact-form-overlay">
+                <div class="contact-form-content">
+                    <h1>Свържете се чрез контактна форма</h1>
+                    <form method="post" autocomplete="off">
+
+                        <label for="first-name">Кажете ни Вашето име</label>
+                        <div>
+                            <input id="first-name"  type="text" name="first-name" placeholder="Име">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label for="email">Кажете ни Вашата поща</label>
+                        <div>
+                            <input id="email" type="text" name="email" placeholder="Поща">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <label for="message">Вашето съобщение</label>
+                        <div>
+                            <textarea id="message" name="message" placeholder="Вашето съобщение"></textarea>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <input type="submit" style="transition: 0.5s;" name="send-message" class="input-scretch-more input-scretch-more-false" value="Изпрати" />
+
+
+                    </form>
+                </div>
+            </div>
+
+    </section>
+
+</main>
+{% endblock %}

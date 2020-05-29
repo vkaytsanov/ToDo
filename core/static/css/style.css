@@ -65,6 +65,22 @@ h1,h2,h3,h4,h5,h6{
     display:block;
 }
 
+.background-overlay3{
+    background: url("../media/background_image4.png") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    min-width:280px;
+    min-height:840px;
+    position:relative !important;
+
+    flex: 1 1 auto;
+
+    display:block;
+
+
+}
+
 header{
     margin:30px auto;
     width: 100%;
@@ -348,6 +364,18 @@ header{
     border: 1px solid #ccc;
     color: #2c2c2c;
 }
+
+.additional-info{
+    color: #e4e7ec;
+    position:absolute !important;
+    width: auto;
+    height: 100% !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-25%);
+
+}
+.additional-info p{ padding-left: 5px;}
 
 .user-button{
     background-color: #4169E1;
