@@ -1,3 +1,11 @@
+<script>
+    $(document).ready(function(){
+
+        $('.avatar').on('click', (function(){
+            $('.login-menu').show();
+        }));
+    });
+</script>
 <footer>
     <p>Reminders 2020<span><a href="{% url 'about' %}">За нас</a> <a href="{% url 'contact' %}">Свържете се</a> <a href="{% url 'privacy_policy' %}">Политика за поверителност</a></span></p>
 </footer>
