@@ -6,7 +6,24 @@
 {% block extra_scripts %}{% endblock %}
 {% block content %}
 <main rel="main">
-
+    <section class="notes-section">
+        <div class="note-wrapper">
+            <div class="note-category-active">
+                <h3 class="note-title">Тест</h3>
+                <div class="note-item">
+                    teststs
+                </div>
+                <div class="note-item-add">
+                    <i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави още
+                </div>
+            </div>
+        </div>
+        <div class="note-wrapper">
+            <div class="note-category">
+                <h3 class="note-title"><i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави списък</h3>
+            </div>
+        </div>
+    </section>
 </main>
 {% endblock %}
 {% block footer %} {% include 'dashboard/footer.html' %} {% endblock %}
