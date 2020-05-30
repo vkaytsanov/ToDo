@@ -1,0 +1,57 @@
+{% load static %}
+<header>
+    <div class="logo-section">
+         <a href="{% url 'dashboard:index' %}"><img src="{% static 'media/logo_small_blue.png' %}" alt="Reminders Logo"></a>
+    </div>
+    <div class="burger-menu-mobile"><a href="#"><i class="fas fa-bars"></i></a></div>
+    <div class="burger-menu-mobile-quit"><a href="#"><i class="fas fa-times"></i></a></div>
+    <nav class="nav-menu">
+        <div class="login-section">
+            <p class="nav-left">Моите бележки</p>
+         <ul class="nav-right">
+            <li class="header-help-text"><a href="#">Помощ</a></li>
+            <li><a href="#" >
+            <span class="avatar">
+                <img style="border-radius:50%; border: 1px solid #616872; margin-top: 15px;" height="32" src="https://www.gravatar.com/avatar/55bf0ff935ff9b85575ae322ba5c1e6b?s=128&d=mm" alt="" title="My Name">
+            </span>
+                </a>
+                <div class="login-menu">
+                    <img src="" class="menu-background">
+                    <img style="border-radius:50%; margin-left: 10px;" height="64" src="https://www.gravatar.com/avatar/55bf0ff935ff9b85575ae322ba5c1e6b?s=128&d=mm" alt="" title="My Name">
+                    <a href=""><div>
+                            <i class="fas fa-user"></i>
+                            <span>Моят профил</span>
+                        </div>
+                    </a>
+                    <a href=""><div>
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div>
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Изход</span>
+                        </div>
+                    </a>
+                </div></li>
+        </ul>
+            <div class="mobile-menu-extra-text">
+                <h5>Адрес</h5>
+                <p>НБУ, София, България</p>
+                <h5>Свържи се</h5>
+                <ul class="social-buttons">
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!--    <div class="header-help-text"><a href="#">Помощ</a></div>-->
+
+
+
+
+    <div class="clear"></div>
+</header>

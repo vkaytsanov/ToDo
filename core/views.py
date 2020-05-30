@@ -12,24 +12,24 @@ def index(request):
     args = {}
     number_of_registered = 13000
     args['number_of_registered'] = number_of_registered
-    return render(request, 'index.html', args)
+    return render(request, 'landing_page/index.html', args)
 
 
 def login(request):
-    return render(request, 'login.html', {})
+    return render(request, 'landing_page/login.html', {})
 
 
 def register(request):
-    return render(request, 'register.html', {})
+    return render(request, 'landing_page/register.html', {})
 
 
 def about(request):
-    return render(request, 'about.html', {})
+    return render(request, 'landing_page/about.html', {})
 
 
 def contact(request):
-    return render(request, 'contact.html', {})
+    return render(request, 'landing_page/contact.html', {})
 
 
 def privacy_policy(request):
-    return render(request, 'privacy-policy.html', {})
+    return render(request, 'landing_page/privacy-policy.html', {})

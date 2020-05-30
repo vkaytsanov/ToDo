@@ -10,7 +10,7 @@
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% endblock %}">
     <link rel="icon" type="image/png" href="{% static 'media/favicon.png' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
     {% block extra_styles %}{% endblock %}
     <script src="{% static 'jquery.js' %}"></script>
@@ -19,6 +19,6 @@
     <title>{% block title %}{% endblock %} | Reminders</title>
 </head>
 <body>
-{% include 'header.html' %}
+{% include 'dashboard/header.html' %}
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}
