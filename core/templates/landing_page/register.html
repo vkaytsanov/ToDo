@@ -12,13 +12,10 @@
         <div class="column">
             <p>Всички полета са задължителни!</p>
             <p style="float:left;width: 350px;"></p>
-
+                {{ form.errors }}
                 <form method="post" autocomplete="off">
-                    <div class="row">
-                        <input type="text" name="first_name" id="first_name" placeholder="Име"/>
-                        <input type="text" name="last_name" id="last_name" placeholder="Фамилия"/>
-                    </div>
-                    <br>
+                    {% csrf_token %}
+
                     <div class="row">
                         <div id="user-icon" class="signup-left-icon">
                             <i  class="fa fa-user"></i>
@@ -36,14 +33,14 @@
                         <div id="password-icon" class="signup-left-icon">
                             <i  class="fa fa-lock"></i>
                         </div>
-                        <input class="input-scretch" name="password" type="password" id="password" placeholder="Парола" />
+                        <input class="input-scretch" name="password1" type="password" id="password" placeholder="Парола" />
                         <i class="fas fa-eye" id="show-password"></i>
                     </div>
                     <div class="row">
                         <div id="repeat_password-icon" class="signup-left-icon">
                             <i class="fa fa-lock-open"></i>
                         </div>
-                        <input class="input-scretch" name="repeat_password" id="repeat_password" type="password" placeholder="Повтори паролата" />
+                        <input class="input-scretch" name="password2" id="repeat_password" type="password" placeholder="Повтори паролата" />
                     </div>
                     <div class="row">
                         <input type="submit" name="register" class="input-scretch-more input-scretch-more-false" value="Регистрирай се" />

@@ -1,5 +1,10 @@
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+
+from core.forms import RegistrationForm
+from core.models import User
 
 ''' we call the render function with the following request on the page we would like to render,
     the 3rd parameter is for passing variables with values, which can be used, type {} for none
@@ -15,12 +20,27 @@ def index(request):
     return render(request, 'landing_page/index.html', args)
 
 
-def login(request):
+def signin(request):
     return render(request, 'landing_page/login.html', {})
 
 
 def register(request):
-    return render(request, 'landing_page/register.html', {})
+    if request.method == "POST":
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('../dashboard/index.html')
+        else:
+            print(form.errors)
+    else:
+        form = RegistrationForm()
+    return render(request, 'landing_page/register.html', {'form': form})
+
+
+def registered_users(request):
+    users = User.objects.all()
+    print(users)
+    return render(request, 'landing_page/registered-users.html', {'users': users})
 
 
 def about(request):

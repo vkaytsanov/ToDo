@@ -24,8 +24,9 @@ from core import views
     as first argument will be the place to render it, second argument is for where the method is '''
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login/', views.login, name='login'),
+    path('login/', views.signin, name='login'),
     path('register/', views.register, name='register'),
+    path('registered-users/', views.registered_users, name='registered'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
