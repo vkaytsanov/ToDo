@@ -1,7 +1,14 @@
 from core.models import User
 import re
+from hashlib import sha256
 
 users = User.objects.all()
+
+
+def hashFunction(password):
+    hashed = sha256(password.encode('utf-8'))
+    hex = hashed.hexdigest()
+    return hex
 
 
 def handleRegistration(POST):
@@ -9,9 +16,6 @@ def handleRegistration(POST):
     email = POST['email']
     password = POST['password']
     repeat_password = POST['repeat_password']
-    print(username)
-    print(email)
-    print(password)
     check, message = checkValidUsername(username)
     if not check:
         return check, message
@@ -55,8 +59,6 @@ def checkValidPassword(password, repeat_password):
         return False, "Трябва да повторите въведената парола"
     if len(password) < 6:
         return False, "Трябва да въведете парола по дълга от 6 символа"
-    if not bool(re.match('((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,30})', password)):
-        return False, "Паролата е твърде лесна"
-    if password is not repeat_password:
+    if password != repeat_password:
         return False, "Въведените пароли не съвпадат"
     return True, ""

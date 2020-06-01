@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from core.functions.registration import handleRegistration
+from core.functions.registration import handleRegistration, hashFunction
 from core.forms import RegistrationForm
 from core.models import User
 
@@ -29,7 +29,8 @@ def register(request):
     if request.method == "POST":
         response, message = handleRegistration(request.POST)
         if response:
-            user = User(request.POST['username'], request.POST['email'], request.POST['password'])
+            password = hashFunction(request.POST['password'])
+            user = User(username=request.POST['username'], email=request.POST['email'], password=password)
             user.save()
             args['response'] = True
             args['response_message'] = 'Успешно създаване на акаунт'
