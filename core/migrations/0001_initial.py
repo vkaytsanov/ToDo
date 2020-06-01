@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('username', models.CharField(max_length=30)),
-                ('email', models.CharField(max_length=30)),
+                ('email', models.EmailField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
