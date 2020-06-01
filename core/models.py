@@ -13,6 +13,12 @@ class User(models.Model):
     def __str__(self):
         return self.username
 
+    def getUsername(self):
+        return self.username
+
+    def getEmail(self):
+        return self.email
+
 
 class Achievement(models.Model):
     id = models.AutoField(primary_key=True)

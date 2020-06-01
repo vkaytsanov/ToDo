@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-
+from core.functions.registration import handleRegistration
 from core.forms import RegistrationForm
 from core.models import User
 
@@ -25,16 +25,19 @@ def signin(request):
 
 
 def register(request):
+    args = {}
     if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('../dashboard/')
+        response, message = handleRegistration(request.POST)
+        if response:
+            user = User(request.POST['username'], request.POST['email'], request.POST['password'])
+            user.save()
+            args['response'] = True
+            args['response_message'] = 'Успешно създаване на акаунт'
         else:
-            print(form.errors)
-    else:
-        form = RegistrationForm()
-    return render(request, 'landing_page/register.html', {'form': form})
+            args['response'] = False
+            args['response_message'] = message
+
+    return render(request, 'landing_page/register.html', {'form': args})
 
 
 def registered_users(request):
