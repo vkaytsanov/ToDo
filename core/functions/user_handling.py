@@ -5,6 +5,16 @@ from hashlib import sha256
 users = User.objects.all()
 
 
+def login(username, password):
+    for user in users:
+        if username == user.getUsername():
+            if hashFunction(password) == user.getPassword():
+                return True, ""
+            else:
+                return False, "Невалидна парола"
+    return False, "Такъв потребител не съществува"
+
+
 def hashFunction(password):
     hashed = sha256(password.encode('utf-8'))
     hex = hashed.hexdigest()

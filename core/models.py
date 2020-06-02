@@ -19,6 +19,9 @@ class User(models.Model):
     def getEmail(self):
         return self.email
 
+    def getPassword(self):
+        return self.password
+
 
 class Achievement(models.Model):
     id = models.AutoField(primary_key=True)
