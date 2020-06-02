@@ -27,7 +27,8 @@ def signin(request):
         response, message = login(username, password)
         if response:
             args['response'] = True
-            return render(request, 'dashboard/index.html', args)
+            args['username'] = username
+            return render(request, 'dashboard/index.html', {'args': args})
         else:
             args['response'] = False
             args['response_message'] = message
