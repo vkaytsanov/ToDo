@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -21,7 +22,22 @@ def index(request):
 
 
 def signin(request):
-    return render(request, 'landing_page/login.html', {})
+    if request.method == 'POST':
+        username = request.POST.get('username', False)
+        password = request.POST.get('password', False)
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            return render(request, 'dashboard/index.html', {})
+        else:
+            # Return an 'invalid login' error message.
+            messages.info(request, 'Username OR password is incorrect')
+            return render(request, 'landing_page/login.html', {})
+
+    else:
+        context = {}
+        return render(request, 'landing_page/login.html', context)
 
 
 def register(request):
