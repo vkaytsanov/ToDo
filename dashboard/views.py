@@ -7,26 +7,41 @@ from core.models import Note, User
 
 
 def index(request):
+    notes_by_category = {}
     if 'name' not in request.session:
         return redirect('../', {})
     cur_user = User.objects.get(username=request.session['name'])
     if request.method == "POST":
-        if 'note_id' in request.POST:
+        if 'new_category' in request.POST:
+            note_category = request.POST['new_category']
+            note = Note(user_id=cur_user, category=note_category, description='placeholder', is_visible=False,
+                        joined_users='')
+            note.save()
+        elif 'note_id' in request.POST:
             note = Note.objects.filter(id=request.POST['note_id']).get()
             note.is_visible = False
             note.save()
-        else:
+        elif 'add' in request.POST:
             note_title = request.POST['note_title']
+            note_category = request.POST['note_category']
             if len(note_title) > 0:
-                note = Note(user_id=cur_user, description=note_title, date_created=timezone.now().date(),
-                            date_expected=timezone.now().date(),
-                            is_completed=False, is_visible=True, joined_users='')
-                note.save()
-    user_notes = []
+                try:
+                    note = Note(user_id=cur_user, category=note_category,
+                                description=note_title, is_visible=True, joined_users='')
+                    note.save()
+                except Exception:
+                    pass
     for note in Note.objects.filter(user_id=cur_user.getId()):
-        if note.is_visible != '0':
-            user_notes.append(note)
-    return render(request, 'dashboard/index.html', {'user_notes': user_notes})
+        cat = str(note.category).strip(" ")
+        try:
+            notes_by_category[cat]
+        except KeyError:
+            notes_by_category[cat] = []
+        finally:
+            if bool(note.is_visible):
+                notes_by_category[cat].append(note)
+
+    return render(request, 'dashboard/index.html', {'user_notes': notes_by_category})
 
 
 def logout(request):

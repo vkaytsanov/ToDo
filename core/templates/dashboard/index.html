@@ -7,58 +7,76 @@
 {% block content %}
 <main rel="main">
     <section class="notes-section">
-        <div class="note-wrapper">
-            <div class="note-category-active">
-                <h3 class="note-title">Тест</h3>
-                {% for note in user_notes %}
-                <div class="note-item">
-                    <form method="post" class="{{ note.id }}">
+            {% for category, notes in user_notes.items %}
+                <div class="note-wrapper">
+                    <div class="note-category-active">
+                        <h3 class="note-title">{{ category }}</h3>
+                        {% for note in notes %}
+                            {% if note.description != 'placeholder' %}
+                                <div class="note-item">
+                                    <form method="post" class="{{ note.id }}">
+                                        {% csrf_token %}
+                                        {{ note.description }}
+                                        <input type="text" name="note_id" value="{{ note.id }}" hidden>
+                                        <input type="text" name="note_category" value="{{ note.category }}" hidden>
+                                        <i class="fas fa-times note-close" id="{{ note.id }}" style="top:0; right: 0; float:right;"><input type="submit" name="note_close" hidden></i>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="note-item-add">
+                            <i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави още
+                        </div>
+                    <form method="post" class="add-note-form" autocomplete="off" style="display:none;">
                         {% csrf_token %}
-                       {{ note.description }}
-                        <input type="text" name="note_id" value="{{ note.id }}" hidden>
-                        <i class="fas fa-times note-close" id="{{ note.id }}" style="top:0; right: 0; float:right;"><input type="submit" name="note_close" hidden></i>
+                        <div class="note-item-add-active">
+                            <input type="text" name="note_category" value="{{ category }} " hidden>
+                            <textarea name="note_title" placeholder="Добави заглавие на твоята бележка..."></textarea>
+                        </div>
+                         <span class="note-item-buttons-active">
+                            <input type="submit" class="add-button" name="add" value="Добави"><i class="fas fa-times close"></i>
+                         </span>
+                    </form>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="note-wrapper">
+                <div class="note-category">
+                    <h3 class="note-title"><i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави списък</h3>
+                    <form method="post" autocomplete="off" name="note_hidden_category" class="note_hidden_category" hidden>
+                        {% csrf_token %}
+                        <input type="text" name="new_category" placeholder="Добави категория">
+                        <input type="submit" hidden>
                     </form>
                 </div>
-                {% endfor %}
-
-                <div class="note-item-add">
-                    <i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави още
-                </div>
-                <form method="post" class="add-note-form" autocomplete="off" style="display:none;">
-                    {% csrf_token %}
-                    <div class="note-item-add-active">
-
-                        <textarea name="note_title" placeholder="Добави заглавие на твоята бележка..."></textarea>
-                    </div>
-                     <span class="note-item-buttons-active" style="display:none;">
-                        <input type="submit" class="add-button" name="add" value="Добави"><i class="fas fa-times close"></i>
-                     </span>
-                </form>
             </div>
-        </div>
-        <div class="note-wrapper">
-            <div class="note-category">
-                <h3 class="note-title"><i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави списък</h3>
-            </div>
-        </div>
+
     </section>
 </main>
 <script>
     $('document').ready(function(){
+<!--    Adding new note to the category function, shows buttons -->
         $('.note-item-add').on('click', function(){
-            $('.add-note-form').show();
-            $('.note-item-buttons-active').show();
-            $('.note-item-add').hide();
+            $(this).siblings('form').show();
         });
 
+<!--      Closing the add for a new note on the category ---->
         $('.close').on('click', function(){
             $('.add-note-form').hide();
             $('.note-item-buttons-active').hide();
             $('.note-item-add').show();
         });
+<!--       Making the note invisible -->
         $('.note-close').on('click', function(){
             $('form.' + $(this).attr('id')).submit();
              console.log('form.' + $(this).attr('id'));
+        });
+<!--        Create new category -->
+        $('.note-title').on('click', function(){
+            $(this).parent().attr('class', "note-category-active");
+            $(this).hide();
+            $('.note_hidden_category').show();
         });
     });
 </script>

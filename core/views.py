@@ -30,7 +30,7 @@ def signin(request):
         response, message = login(username, password)
         if response:
             request.session['name'] = username
-            return render(request, 'dashboard/index.html', {'args': args})
+            return redirect('../dashboard/', {'args': args})
         else:
             args['response_message'] = message
             return render(request, 'landing_page/login.html', {'args': args})
