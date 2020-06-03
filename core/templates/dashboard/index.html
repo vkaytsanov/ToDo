@@ -11,6 +11,7 @@
                 <div class="note-wrapper">
                     <div class="note-category-active">
                         <h3 class="note-title">{{ category }}</h3>
+                        <br><br><br>
                         {% for note in notes %}
                             {% if note.description != 'placeholder' %}
                                 <div class="note-item">
@@ -58,13 +59,13 @@
     $('document').ready(function(){
 <!--    Adding new note to the category function, shows buttons -->
         $('.note-item-add').on('click', function(){
+            $(this).hide();
             $(this).siblings('form').show();
         });
 
 <!--      Closing the add for a new note on the category ---->
         $('.close').on('click', function(){
             $('.add-note-form').hide();
-            $('.note-item-buttons-active').hide();
             $('.note-item-add').show();
         });
 <!--       Making the note invisible -->
