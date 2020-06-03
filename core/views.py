@@ -21,6 +21,8 @@ def index(request):
 
 def signin(request):
     args = {}
+    if 'name' in request.session:
+        return redirect('../dashboard/')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
