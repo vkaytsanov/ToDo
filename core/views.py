@@ -26,7 +26,7 @@ def signin(request):
         password = request.POST['password']
         response, message = login(username, password)
         if response:
-            args['username'] = username
+            request.session['name'] = username
             return render(request, 'dashboard/index.html', {'args': args})
         else:
             args['response_message'] = message
@@ -44,7 +44,7 @@ def register(request):
             user = User(username=request.POST['username'], email=request.POST['email'], password=password)
             user.save()
             args['response_message'] = 'Успешно създаване на акаунт'
-            args['username'] = user.getUsername()
+            request.session['name'] = user.getUsername()
             return render(request, 'dashboard/index.html', {'args': args})
         else:
             args['response_message'] = message

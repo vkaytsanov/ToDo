@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+    background-color: #fff;
+    color: #2c2c2c;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+}

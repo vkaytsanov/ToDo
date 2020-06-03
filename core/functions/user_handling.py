@@ -1,3 +1,5 @@
+from django.shortcuts import redirect
+
 from core.models import User
 import re
 from hashlib import sha256

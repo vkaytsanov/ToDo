@@ -101,7 +101,7 @@ header{
 .logo-section{
 
     padding-left: 20px;
-    flex: 1;
+    flex: 1 1;
 }
 
 .burger-menu-mobile{
@@ -521,6 +521,10 @@ footer{
 
     bottom: 0;
     color: #2c2c2c;
+}
+
+.logout-section{
+    text-align:center;
 }
 
 footer span{
