@@ -9,12 +9,12 @@ from core.models import User
     the 3rd parameter is for passing variables with values, which can be used, type {} for none
 '''
 
-""" ToDo get count of registered users from the database """
+"""  get count of registered users from the database """
 
 
 def index(request):
     args = {}
-    number_of_registered = 13000
+    number_of_registered = 700 + User.objects.count()
     args['number_of_registered'] = number_of_registered
     return render(request, 'landing_page/index.html', args)
 
@@ -26,11 +26,9 @@ def signin(request):
         password = request.POST['password']
         response, message = login(username, password)
         if response:
-            args['response'] = True
             args['username'] = username
             return render(request, 'dashboard/index.html', {'args': args})
         else:
-            args['response'] = False
             args['response_message'] = message
             return render(request, 'landing_page/login.html', {'args': args})
     else:
@@ -45,19 +43,13 @@ def register(request):
             password = hashFunction(request.POST['password'])
             user = User(username=request.POST['username'], email=request.POST['email'], password=password)
             user.save()
-            args['response'] = True
             args['response_message'] = 'Успешно създаване на акаунт'
+            args['username'] = user.getUsername()
+            return render(request, 'dashboard/index.html', {'args': args})
         else:
-            args['response'] = False
             args['response_message'] = message
 
     return render(request, 'landing_page/register.html', {'form': args})
-
-
-def registered_users(request):
-    users = User.objects.all()
-    print(users)
-    return render(request, 'landing_page/registered-users.html', {'users': users})
 
 
 def about(request):

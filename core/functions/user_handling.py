@@ -42,9 +42,8 @@ def checkValidUsername(username):
     if len(username) < 3:
         return False, "Потребителското име е твърде късо"
 
-    for user in users:
-        if username == user.getUsername():
-            return False, "Потребителското име вече е заето, да не би да сте си забравили данните?"
+    if User.objects.filter(username=username).count() == 1:
+        return False, "Потребителското име вече е заето, да не би да сте си забравили данните?"
     return True, ""
 
 
@@ -53,9 +52,8 @@ def checkValidEmail(email):
         return False, "Трябва да въведете имейл"
     if len(email) < 3:
         return False, "Имейлът е твърде къс"
-    for user in users:
-        if email == user.getEmail():
-            return False, "Такъв имейл вече съществува, да не би да сте си забравили данните?"
+    if User.objects.filter(email=email).count() == 1:
+        return False, "Такъв имейл вече съществува, да не би да сте си забравили данните?"
     regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
     if re.search(regex, email):
         return True, ""
