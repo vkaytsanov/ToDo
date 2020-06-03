@@ -706,6 +706,10 @@ input:active{
     display:flex;
     width: 900px;
 }
+
+.profile-section-content{
+    background: #fff;
+}
 .profile-section table{
     border: none;
     width: 100%;
