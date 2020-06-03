@@ -17,6 +17,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
+# REMOVE IT IF IN PRODUCTION
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/

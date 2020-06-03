@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-
+from django.core.mail import send_mail
 from core.models import User
 import re
 from hashlib import sha256
@@ -56,6 +56,59 @@ def checkValidEmail(email):
         return False, "Имейлът е твърде къс"
     if User.objects.filter(email=email).count() == 1:
         return False, "Такъв имейл вече съществува, да не би да сте си забравили данните?"
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+    if re.search(regex, email):
+        return True, ""
+    return False, "Имейл адресът не е валиден."
+
+
+def handleEmailSend(POST):
+    name = POST['first-name']
+    email = POST['email']
+    message = POST['message']
+    check, response_message = checkNotSpamName(name)
+    if not check:
+        return response_message
+    check, response_message = checkNotSpamEmail(email)
+    if not check:
+        return response_message
+    check, response_message = checkNotSpamMessage(message)
+    if check:
+        send_mail(
+            '[Reminders] Мейл от ' + name,
+            message,
+            email,
+            ['vkaytsanov@yahoo.com'],
+            fail_silently=False,
+        )
+        return 'Успешно ни изпратихте съобщение. Ще се свържем с вас възможно най-скоро!'
+    return response_message
+
+
+def checkNotSpamName(name):
+    if len(name) == 0:
+        return False, "Моля, въведете вашето име"
+    return True, ""
+
+
+def checkNotSpamMessage(message):
+    if len(message) == 0:
+        return False, "Моля, въведете вашето съобщение"
+    SPAM_KEYWORDS = ['viagra', 'sex', 'toys', 'SEO', 'course', 'growth', 'Verdiеnеn', 'ЖАРКАЯ ШТУЧКА', 'Dаting',
+                     'Germany', 'girls']
+    for keyword in SPAM_KEYWORDS:
+        for word in message.split():
+            if word in keyword:
+                return False, "Успешно изпратихте вашето съобщение :)"
+
+    return True, ""
+
+
+def checkNotSpamEmail(email):
+    if len(email) == 0:
+        return False, "Трябва да въведете имейл"
+    if len(email) < 3:
+        return False, "Имейлът е твърде къс"
     regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
     if re.search(regex, email):
         return True, ""

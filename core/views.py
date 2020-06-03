@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from core.functions.user_handling import handleRegistration, hashFunction, login
+
+from core.functions.user_handling import handleRegistration, hashFunction, login, handleEmailSend
 from core.models import User
 
 ''' we call the render function with the following request on the page we would like to render,
@@ -59,7 +60,11 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'landing_page/contact.html', {})
+    args = {}
+    if request.method == 'POST':
+        response = handleEmailSend(request.POST)
+        args['response_message'] = response
+    return render(request, 'landing_page/contact.html', {'args': args})
 
 
 def privacy_policy(request):

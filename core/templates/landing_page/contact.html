@@ -26,11 +26,12 @@
              <div class="contact-form-overlay">
                 <div class="contact-form-content">
                     <h1>Свържете се чрез контактна форма</h1>
+                    <div style="padding-left: 20px;padding-bottom: 10px; color: #d43f3a; width: 500px;">{{ args.response_message }}<br></div>
                     <form method="post" autocomplete="off">
-
+                        {% csrf_token %}
                         <label for="first-name">Кажете ни Вашето име</label>
                         <div>
-                            <input id="first-name"  type="text" name="first-name" placeholder="Име">
+                            <input id="first-name" type="text" name="first-name" placeholder="Име">
                             <span class="focus-input100"></span>
                         </div>
 
