@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from core.functions.user_handling import hashFunction
-
+from django.utils import timezone
 
 # Create your views here.
 from core.models import Note, User
@@ -9,7 +9,24 @@ from core.models import Note, User
 def index(request):
     if 'name' not in request.session:
         return redirect('../', {})
-    return render(request, 'dashboard/index.html', {})
+    cur_user = User.objects.get(username=request.session['name'])
+    if request.method == "POST":
+        if 'note_id' in request.POST:
+            note = Note.objects.filter(id=request.POST['note_id']).get()
+            note.is_visible = False
+            note.save()
+        else:
+            note_title = request.POST['note_title']
+            if len(note_title) > 0:
+                note = Note(user_id=cur_user, description=note_title, date_created=timezone.now().date(),
+                            date_expected=timezone.now().date(),
+                            is_completed=False, is_visible=True, joined_users='')
+                note.save()
+    user_notes = []
+    for note in Note.objects.filter(user_id=cur_user.getId()):
+        if note.is_visible != '0':
+            user_notes.append(note)
+    return render(request, 'dashboard/index.html', {'user_notes': user_notes})
 
 
 def logout(request):

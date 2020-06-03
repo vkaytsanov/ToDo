@@ -5,7 +5,7 @@ class User(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=30)
     email = models.EmailField()
-    password = models.CharField(max_length=30)
+    password = models.CharField(max_length=256)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
@@ -38,8 +38,8 @@ class Note(models.Model):
     description = models.TextField()
     date_created = models.DateField()
     date_expected = models.DateField()
-    is_completed = models.CharField(max_length=1)
-    is_visible = models.CharField(max_length=1)
+    is_completed = models.BooleanField(max_length=1)
+    is_visible = models.BooleanField(max_length=1)
     joined_users = models.TextField()
 
 
