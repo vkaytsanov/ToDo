@@ -56,6 +56,7 @@ def profile(request):
     args = {}
     user = User.objects.get(username=request.session['name'])
     args['note_count'] = Note.objects.filter(user_id=user.getId()).count()
+    args['note_count_successful'] = Note.objects.filter(user_id=user.getId(), is_visible=False).count()
     if request.method == 'POST':
         get_password = request.POST['password']
         new_password = hashFunction(get_password)
