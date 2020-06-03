@@ -10,4 +10,5 @@ app_name = 'dashboard'
 urlpatterns = [
     path('', views.index, name='index'),
     path('logout/', views.logout, name='logout'),
+    path('profile/', views.profile, name='profile'),
 ]

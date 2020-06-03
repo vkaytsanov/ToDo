@@ -13,6 +13,9 @@ class User(models.Model):
     def __str__(self):
         return self.username
 
+    def getId(self):
+        return self.id
+
     def getUsername(self):
         return self.username
 

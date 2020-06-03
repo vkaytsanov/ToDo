@@ -1,0 +1,74 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Моят профил{% endblock %}
+{% block description %}Твоят е-бележник за твоите задължения.{% endblock %}
+{% block keywords %}бележник, задължения, онлайн, екип{% endblock %}
+{% block extra_styles %}{% endblock %}
+{% block extra_scripts %}{% endblock %}
+{% block content %}
+<main>
+    <section class="profile-section">
+        <div class="profile-section-header">
+            <div class="profile-section-header-background">
+                <img style="border-radius:50%; margin: 30px; " height="64" src="https://www.gravatar.com/avatar/55bf0ff935ff9b85575ae322ba5c1e6b?s=128&d=mm" alt="" title="My Name">
+                <div class="" style="text-align:left; margin: 15px;">
+                    <br><br>
+                    <p style="font-size: 12pt;">{{ request.session.name }}</p>
+                </div>
+            </div>
+            <div>
+                <table class="profile-section-content">
+                    <tbody>
+                    <tr class="profile-section-row" id="row4">
+                        <td>
+                            <b>Парола</b>
+                        </td>
+                        <td>
+                            <p>********</p>
+                        </td>
+                    </tr>
+                    <tr class="profile-section-row hide" id="row4-collapse">
+                        <td>
+                            <label for="password">Смени паролата</label>
+                        </td>
+                        <td>
+                            <p>
+                            <form method="post" autocomplete="off">
+                            {% csrf_token %}
+                                <input type="password" name="password" id="password">
+                                <input type="submit" name="password_submit" value="Смени">
+                            </form>
+                             {{ args.password_response }}
+
+                        </td>
+                    </tr>
+                    <tr class="profile-section-row" id="row5">
+                        <td>
+                            <b>Бележки</b> <span class="border-number">{{ args.note_count }}</span>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+               </div>
+        </div>
+    </section>
+</main>
+<script type="text/javascript" src="<?php echo $this->router->publicWeb('assets/tooltip.js'); ?>"></script>
+<script>
+    $('document').ready(function(){
+        $('.profile-section-row#row4').on('click', function(){
+            if($('.profile-section-row.hide#row4-collapse').is(":hidden")){
+                $('.profile-section-row.hide#row4-collapse').show('slideDown');
+
+            }
+            else{
+                $('.profile-section-row.hide#row4-collapse').hide('slideUp');
+
+            }
+        });
+
+    });
+</script>
+{% endblock %}
+{% block footer %} {% include 'dashboard/footer.html' %} {% endblock %}

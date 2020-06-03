@@ -7,7 +7,6 @@
     <div class="burger-menu-mobile-quit"><a href="#"><i class="fas fa-times"></i></a></div>
     <nav class="nav-menu">
         <div class="login-section">
-            <p class="nav-left">Моите бележки</p>
          <ul class="nav-right">
             <li class="header-help-text"><a href="#">Помощ</a></li>
             <li><a href="#" >
@@ -19,7 +18,7 @@
                     <span style="position: absolute; top: 50px; left: 80px; color: #fff; z-index: 9999;">{{ request.session.name }} </span>
                     <img src="{% static 'media/menu-background.jpg' %}" class="menu-background">
                     <img style="border-radius:50%; margin-left: 10px;" height="64" src="https://www.gravatar.com/avatar/55bf0ff935ff9b85575ae322ba5c1e6b?s=128&d=mm" alt="" title="My Name">
-                    <a href=""><div>
+                    <a href="{% url 'dashboard:profile' %}"><div>
                             <i class="fas fa-user"></i>
                             <span>Моят профил</span>
                         </div>
