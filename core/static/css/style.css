@@ -131,6 +131,12 @@ header{
     text-decoration: none;
     display:none;
 }
+
+.burger-menu-mobile a{
+    text-decoration: none;
+}
+
+
 .burger-menu-mobile-quit{
     position: absolute;
     top: 0;
@@ -653,6 +659,8 @@ footer a:hover{
         color: #5068a9;
 
     }
+
+
 
     .background-overlay,  .background-overlay2,  .background-overlay3,  .background-overlay4, .background-overlay5{
         margin-top: 20px;

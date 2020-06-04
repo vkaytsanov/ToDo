@@ -31,13 +31,14 @@
                             <label for="password">Смени паролата</label>
                         </td>
                         <td>
-                            <p>
-                            <form method="post" autocomplete="off">
+
+                            <form method="post" autocomplete="off" style="padding: 15px;">
                             {% csrf_token %}
                                 <input type="password" name="password" id="password">
                                 <input type="submit" name="password_submit" value="Смени">
                             </form>
                              {{ args.password_response }}
+
 
                         </td>
                     </tr>
@@ -57,6 +58,7 @@
 </main>
 <script>
     $('document').ready(function(){
+    $('.profile-section-row#row4-collapse').hide();
         $('.profile-section-row#row4').on('click', function(){
             if($('.profile-section-row.hide#row4-collapse').is(":hidden")){
                 $('.profile-section-row.hide#row4-collapse').show('slideDown');

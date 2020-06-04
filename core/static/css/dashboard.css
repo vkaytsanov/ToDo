@@ -755,6 +755,7 @@ input:active{
     padding: 0 18px;
     text-align:left;
     width: 50%;
+    flex: 1 1;
 }
 
 .profile-section-row label{
@@ -766,6 +767,7 @@ input:active{
     height: 96px;
     position:relative;
 }
+
 .profile-section-row:hover{
     background: #eeeeee;
     cursor:pointer;
@@ -784,9 +786,11 @@ input:active{
 .profile-section-row p{
     flex: 1;
 }
+
 .hide{
-    display:none;
-    height:0;
+
+    height:40px;
+    flex: 1;
 }
 .open{
     z-index: 1;
