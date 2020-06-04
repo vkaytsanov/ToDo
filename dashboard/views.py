@@ -13,7 +13,7 @@ def index(request):
     cur_user = User.objects.get(username=request.session['name'])
     if request.method == "POST":
         if 'new_category' in request.POST:
-            note_category = request.POST['new_category']
+            note_category = request.POST['new_category'].rstrip(" ")
             note = Note(user_id=cur_user, category=note_category, description='placeholder', is_visible=False,
                         joined_users='')
             note.save()
@@ -23,7 +23,7 @@ def index(request):
             note.save()
         elif 'add' in request.POST:
             note_title = request.POST['note_title']
-            note_category = request.POST['note_category']
+            note_category = request.POST['note_category'].rstrip(" ")
             if len(note_title) > 0:
                 try:
                     note = Note(user_id=cur_user, category=note_category,
@@ -31,6 +31,11 @@ def index(request):
                     note.save()
                 except Exception:
                     pass
+        elif 'close-category' in request.POST:
+            print(request.POST['cat'])
+            notes = Note.objects.filter(user_id=cur_user.getId(), category=request.POST['cat'])
+            notes.delete()
+
     for note in Note.objects.filter(user_id=cur_user.getId()):
         cat = str(note.category).strip(" ")
         try:
@@ -40,8 +45,10 @@ def index(request):
         finally:
             if bool(note.is_visible):
                 notes_by_category[cat].append(note)
-
-    return render(request, 'dashboard/index.html', {'user_notes': notes_by_category})
+    can_add_category = True
+    if len(notes_by_category.keys()) > 4:
+        can_add_category = False
+    return render(request, 'dashboard/index.html', {'user_notes': notes_by_category, 'add_additional': can_add_category})
 
 
 def logout(request):

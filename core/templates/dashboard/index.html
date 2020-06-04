@@ -10,7 +10,12 @@
             {% for category, notes in user_notes.items %}
                 <div class="note-wrapper">
                     <div class="note-category-active">
-                        <h3 class="note-title">{{ category }}</h3>
+                        <form method="post" autocomplete="off" name="category-{{category}}">
+                            {% csrf_token %}
+                            <input type="text" name="cat" value="{{ category }}" hidden>
+                            <input type="text" name="close-category" hidden>
+                            <h3 class="note-title">{{ category }} <i class="fas fa-times close-category" style="float: right;"></i></h3>
+                        </form>
                         <br><br><br>
                         {% for note in notes %}
                             {% if note.description != 'placeholder' %}
@@ -41,7 +46,7 @@
                     </div>
                 </div>
             {% endfor %}
-
+            {% if add_additional %}
             <div class="note-wrapper">
                 <div class="note-category">
                     <h3 class="note-title"><i class="fas fa-plus" style="left:0; margin: 5px;"></i> Добави списък</h3>
@@ -52,6 +57,7 @@
                     </form>
                 </div>
             </div>
+            {% endif %}
 
     </section>
 </main>
@@ -78,6 +84,11 @@
             $(this).parent().attr('class', "note-category-active");
             $(this).hide();
             $('.note_hidden_category').show();
+        });
+<!--        Close category  -->
+        $('.close-category').on('click', function(){
+            $(this).parent().parent().submit();
+            console.log($(this).parent().parent());
         });
     });
 </script>
