@@ -4,16 +4,11 @@ from core.models import User
 import re
 from hashlib import sha256
 
-users = User.objects.all()
-
 
 def login(username, password):
-    for user in users:
-        if username == user.getUsername():
-            if hashFunction(password) == user.getPassword():
-                return True, ""
-            else:
-                return False, "Невалидна парола"
+    is_user = User.objects.filter(username=username, password=hashFunction(password)).count()
+    if is_user == 1:
+        return True, ""
     return False, "Такъв потребител не съществува"
 
 
@@ -94,10 +89,11 @@ def checkNotSpamName(name):
 def checkNotSpamMessage(message):
     if len(message) == 0:
         return False, "Моля, въведете вашето съобщение"
-    SPAM_KEYWORDS = ['viagra', 'sex', 'toys', 'SEO', 'course', 'growth', 'Verdiеnеn', 'ЖАРКАЯ ШТУЧКА', 'Dаting',
-                     'Germany', 'girls']
+    SPAM_KEYWORDS = ['viagra', 'sex', 'toys', 'seo', 'course', 'growth', 'verdiеnеn', 'жаркая штучка', 'dаting',
+                     'germany', 'girls', 'онанизъм']
+    message = str(message).lower().split()
     for keyword in SPAM_KEYWORDS:
-        for word in message.split():
+        for word in message:
             if word in keyword:
                 return False, "Успешно изпратихте вашето съобщение :)"
 
